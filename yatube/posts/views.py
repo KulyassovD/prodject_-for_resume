@@ -8,7 +8,6 @@ from .forms import CommentForm, PostForm
 from .models import Comment, Follow, Group, Post, User
 
 
-@cache_page(20, key_prefix='index_page')
 def index(request):
     post_list = Post.objects.all()
     paginator = Paginator(post_list, 10)

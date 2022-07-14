@@ -33,6 +33,8 @@ class PostModelTest(TestCase):
             '/': 200,
             '/group/test-slug/': 200,
             '/profile/auth/': 200,
+            '/profile/auth/follow/': 302,
+            '/profile/auth/unfollow/': 302,
             '/posts/1/': 200,
             '/posts/1/edit/': 302,
             '/posts/1/comment/': 302,
@@ -42,6 +44,8 @@ class PostModelTest(TestCase):
             '/': 200,
             '/group/test-slug/': 200,
             '/profile/auth/': 200,
+            '/profile/auth/follow/': 302,
+            '/profile/auth/unfollow/': 302,
             '/posts/1/': 200,
             '/posts/1/edit/': 200,
             '/create/': 200,
@@ -58,6 +62,7 @@ class PostModelTest(TestCase):
     def test_urls_uses_redirect_template(self):
         templates_url_names = {
             '/posts/1/edit/': '/auth/login/?next=/posts/1/edit/',
+            '/profile/auth/follow/': '/auth/login/?next=/profile/auth/follow/',
             '/create/': '/auth/login/?next=/create/'}
         for value, expected in templates_url_names.items():
             with self.subTest(value=value):

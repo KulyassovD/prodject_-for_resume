@@ -236,26 +236,6 @@ class PostModelTest(TestCase):
             with self.subTest(template=template):
                 self.assertEqual(template, reverse_name)
 
-    def test_follow(self):
-        # Проверили, сообщение в подписках с правильными полями
-        user = PostModelTest.user2
-        author = User.objects.get(username=PostModelTest.user)
-        follow_exist = Follow.objects.filter(user=user, author=author)
-        if user != author and follow_exist.count() == 0:
-            Follow.objects.create(user=user, author=author)
-        response = self.authorized_client_2.get(reverse('posts:follow_index'))
-        self.assertEqual(len(response.context['page_obj']), 10)
-
-    def test_unfollow(self):
-        # Проверили, что при отписке от автора, страница с подписками пуста
-        user = PostModelTest.user2
-        author = User.objects.get(username=PostModelTest.user)
-        Follow.objects.create(user=user, author=author)
-        follow_exist = Follow.objects.filter(user=user, author=author)
-        if user != author and follow_exist.count() != 0:
-            Follow.objects.filter(user=user, author=author).delete()
-        response = self.authorized_client_2.get(reverse('posts:follow_index'))
-        self.assertEqual(len(response.context['page_obj']), 0)
 
     def test_coment(self):
         # Проверили, что сообщения появляются на странице корректно

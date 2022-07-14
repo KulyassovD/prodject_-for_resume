@@ -130,11 +130,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'
-# LOGOUT_REDIRECT_URL = 'posts:index'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/kulyassovD/prodject_-for_resume/yatube/static'
+MEDIA_ROOT = '/home/kulyassovD/prodject_-for_resume/yatube/static'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CACHES = {
     'default': {
